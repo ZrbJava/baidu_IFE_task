@@ -1,0 +1,54 @@
+<!-- 任务描述 -->
+<!-- 参考以下示例代码，页面加载后，将提供的空气质量数据数组，按照某种逻辑（比如空气质量大于60）进行过滤筛选，最后将符合条件的数据按照一定的格式要求显示在网页上-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+  </head>
+<body>
+  <h3>污染城市列表</h3>
+  <ul id="aqi-list">
+<!--   
+    <li>第一名：福州（样例），10</li>
+      <li>第二名：福州（样例），10</li> -->
+  </ul>
+<script type="text/javascript">
+var aqiData = [
+  ["北京", 90],
+  ["上海", 50],
+  ["福州", 10],
+  ["广州", 50],
+  ["成都", 90],
+  ["西安", 100]
+];
+//将aqiData数组中的成员数组按照索引为1（即为数字）进行从大到小排序
+var aqiData=aqiData.sort(function(a,b){
+return b[1]-a[1];
+});
+(function () {
+  /*
+  在注释下方编写代码
+  遍历读取aqiData中各个城市的数据
+  将空气质量指数大于60的城市显示到aqi-list的列表中
+  */
+  num=0;
+  ulElement=document.getElementById('aqi-list');
+  for (i in aqiData){
+      value=aqiData[i][1];
+
+      if(value>60){
+       num+=1;
+        var li=document.createElement('li');//创建元素节点
+        var node=document.createTextNode('第'+num+'名:'+aqiData[i][0]+'===>'+'空气质量指数为：'+aqiData[i][1]);//创建文本节点（内容）
+        li.appendChild(node);//将文本节点添加到li标签内
+        ulElement.appendChild(li);//向ul元素节点添li元素节点
+         
+        }
+  }
+})();
+
+</script>
+</body>
+</html>
